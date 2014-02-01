@@ -8,6 +8,9 @@ class BoardsController < ApplicationController
   end
 
   def create
+    @board = Board.new params_board
+    @board.save
+    redirect_to board_path(@board)
   end
 
   def show
@@ -20,5 +23,10 @@ class BoardsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+  def params_board
+    params.require(:board).permit(:name)
   end
 end
