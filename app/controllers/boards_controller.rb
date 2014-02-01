@@ -28,9 +28,13 @@ class BoardsController < ApplicationController
   end
 
   def destroy
+    @board = Board.find(params[:id])
+    @board.destroy
+    redirect_to boards_path
   end
 
   private
+
   def params_board
     params.require(:board).permit(:name)
   end
